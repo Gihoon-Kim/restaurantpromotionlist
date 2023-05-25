@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  border: 1px solid red;
+}
+
+.dropdownContainer {
+  display: flex;
+}
