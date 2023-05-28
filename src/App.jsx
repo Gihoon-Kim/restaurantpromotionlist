@@ -3,6 +3,9 @@ import RootLayout from "./Layout/RootLayout";
 import HomePage from "./Pages/HomePage";
 import PromotionLayout from "./Layout/PromotionLayout";
 import PromotionListPage from "./Pages/PromotionListPage";
+import AboutUsLayout from "./Layout/AboutUsLayout";
+import AboutMeLayout from "./Layout/AboutMeLayout";
+import "./App.css";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,6 +14,8 @@ function App() {
       element: <RootLayout />,
       children: [
         { index: true, element: <HomePage /> },
+        { path: "about-us", element: <AboutUsLayout /> },
+        { path: "about-me", element: <AboutMeLayout /> },
         {
           path: "promotion-list",
           element: <PromotionLayout />,

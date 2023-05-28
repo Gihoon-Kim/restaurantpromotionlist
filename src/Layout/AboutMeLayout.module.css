@@ -1,0 +1,9 @@
+.container {
+  margin-top: 30px;
+}
+
+.profileImage {
+  width: 10rem;
+  border: 5px dotted white;
+  border-radius: 10rem;
+}
