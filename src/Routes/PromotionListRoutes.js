@@ -1,5 +1,7 @@
 import PromotionLayout from "../Layout/PromotionLayout";
-import PromotionListPage from "../Pages/PromotionListPage";
+import PromotionListPage, {
+  loader as restaurantsLoader,
+} from "../Pages/PromotionListPage";
 
 export const PromotionListRoutes = {
   path: "promotion-list",
@@ -8,6 +10,7 @@ export const PromotionListRoutes = {
     {
       index: true,
       element: <PromotionListPage />,
+      loader: restaurantsLoader,
     },
   ],
 };
