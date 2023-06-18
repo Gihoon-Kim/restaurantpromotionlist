@@ -1,0 +1,18 @@
+.container {
+  margin-top: 30px;
+}
+
+.loading_text {
+  text-align: center;
+  color: red;
+  font-size: large;
+}
+
+.list_detail_container {
+  display: flex;
+  height: 90vh;
+}
+
+.list_leftside {
+  overflow-y: scroll;
+}

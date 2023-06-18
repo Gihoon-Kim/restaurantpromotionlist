@@ -4,6 +4,7 @@ import { Await, defer, json, useLoaderData } from "react-router-dom";
 import PromotionItem from "../Components/PromotionItem";
 import { Container, Typography } from "@mui/material";
 import PromotionItemDetail from "../Components/PromotionItemDetail";
+import classes from "./PromotionListPage.module.css";
 
 const PromotionListPage = () => {
   const { restaurantList } = useLoaderData();
@@ -15,26 +16,15 @@ const PromotionListPage = () => {
   };
 
   return (
-    <Container sx={{ marginTop: "30px" }}>
-      <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
-        <div
-          style={{
-            display: "flex",
-            maxHeight: "500px",
-          }}
-        >
+    <Container className={classes.container}>
+      <Suspense fallback={<p className={classes.loading_text}>Loading...</p>}>
+        <div className={classes.list_detail_container}>
           {/* left side */}
-          <div style={{ overflowY: "scroll" }}>
+          <div className={classes.list_leftside}>
             <Await resolve={restaurantList}>
               {(restaurantList) =>
                 restaurantList.map((item) => (
-                  <>
-                    <PromotionItem
-                      key={item._id}
-                      item={item}
-                      onClick={onClick}
-                    />
-                  </>
+                  <PromotionItem key={item._id} item={item} onClick={onClick} />
                 ))
               }
             </Await>

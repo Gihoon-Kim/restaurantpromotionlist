@@ -36,6 +36,11 @@ const Header = () => {
     setAnchorEl(null);
   };
 
+  const _clickList = () => {
+    navigate("promotion-list");
+    setAnchorEl(null);
+  };
+
   return (
     <Container
       style={{
@@ -50,6 +55,8 @@ const Header = () => {
         </NavLink>
       </Box>
       <Box className={classes.dropdownContainer}>
+        <Button onClick={_clickList}>List</Button>
+
         <Button className={classes.dropdownButton} onClick={_openDropdown}>
           About
           <KeyboardArrowDownIcon />
