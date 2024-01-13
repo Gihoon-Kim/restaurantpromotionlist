@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Header from "../Components/Header";
+import Header from "../PublicLayout/Header/Header";
 
 const RootLayout = () => {
   return (

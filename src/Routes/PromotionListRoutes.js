@@ -1,7 +1,7 @@
-import PromotionLayout from "../Layout/PromotionLayout";
+import PromotionLayout from "../Pages/PromotionList/PromotionLayout";
 import PromotionListPage, {
   loader as restaurantsLoader,
-} from "../Pages/PromotionListPage";
+} from "../Pages/PromotionList/PromotionListPage";
 
 export const PromotionListRoutes = {
   path: "promotion-list",

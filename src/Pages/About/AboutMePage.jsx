@@ -1,7 +1,7 @@
 import React from "react";
-import MyPhoto from "../assets/images/MyPhoto.jpg";
+import MyPhoto from "../../assets/images/MyPhoto.jpg";
 import { Container, Typography } from "@mui/material";
-import styles from "./AboutMeLayout.module.css";
+import styles from "./AboutMePage.module.css";
 
 const AboutMeLayout = () => {
   return (

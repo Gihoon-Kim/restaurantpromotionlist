@@ -41,6 +41,11 @@ const Header = () => {
     setAnchorEl(null);
   };
 
+  const _clickLogin = () => {
+    navigate("login");
+    setAnchorEl(null);
+  };
+
   return (
     <Container
       style={{
@@ -76,7 +81,7 @@ const Header = () => {
           </MenuItem>
         </Menu>
 
-        <Button>LogIn</Button>
+        <Button onClick={_clickLogin}>LogIn</Button>
       </Box>
     </Container>
   );

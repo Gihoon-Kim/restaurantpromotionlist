@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { Suspense, useState } from "react";
 import { Await, defer, json, useLoaderData } from "react-router-dom";
-import PromotionItem from "../Components/PromotionItem";
+import PromotionItem from "./Components/PromotionItem";
 import { Container, Typography } from "@mui/material";
-import PromotionItemDetail from "../Components/PromotionItemDetail";
+import PromotionItemDetail from "./Components/PromotionItemDetail";
 import classes from "./PromotionListPage.module.css";
 
 const PromotionListPage = () => {

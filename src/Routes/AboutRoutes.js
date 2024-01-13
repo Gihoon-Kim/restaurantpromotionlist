@@ -1,5 +1,5 @@
-import AboutMeLayout from "../Layout/AboutMeLayout";
-import AboutUsLayout from "../Layout/AboutUsLayout";
+import AboutMeLayout from "../Pages/About/AboutMePage";
+import AboutUsLayout from "../Pages/About/AboutUsPage";
 
 export const AboutUsRoutes = { path: "about-us", element: <AboutUsLayout /> };
 

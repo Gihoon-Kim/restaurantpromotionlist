@@ -1,3 +1,3 @@
-import HomePage from "../Pages/HomePage";
+import HomePage from "../Pages/Home/HomePage";
 
 export const HomeRoutes = { index: true, element: <HomePage /> };
