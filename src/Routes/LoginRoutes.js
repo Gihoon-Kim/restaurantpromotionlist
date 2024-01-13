@@ -1,16 +1,18 @@
-import LoginLayout from "../Pages/Credentials/LoginPage";
-import RegisterLayout from "../Pages/Credentials/RegisterPage";
+import CredentialLayout from "../Pages/Credentials/CredentialLayout";
+import LoginPage from "../Pages/Credentials/LoginPage";
+import RegisterPage from "../Pages/Credentials/RegisterPage";
 
 export const LoginRoutes = {
   path: "login",
+  element: <CredentialLayout />,
   children: [
     {
       index: true,
-      element: <LoginLayout />,
+      element: <LoginPage />,
     },
     {
       path: "signup",
-      element: <RegisterLayout />,
+      element: <RegisterPage />,
     },
   ],
 };

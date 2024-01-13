@@ -3,7 +3,7 @@ import MyPhoto from "../../assets/images/MyPhoto.jpg";
 import { Container, Typography } from "@mui/material";
 import styles from "./AboutMePage.module.css";
 
-const AboutMeLayout = () => {
+const AboutMePage = () => {
   return (
     <Container className={styles.container}>
       <Container style={{ display: "flex", alignItems: "baseline" }}>
@@ -45,4 +45,4 @@ const AboutMeLayout = () => {
   );
 };
 
-export default AboutMeLayout;
+export default AboutMePage;

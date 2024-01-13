@@ -2,7 +2,7 @@ import { Container, Paper, TextField } from "@mui/material";
 import React from "react";
 import { Form, Link, useNavigation } from "react-router-dom";
 
-const LoginLayout = () => {
+const LoginPage = () => {
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === "submitting";
@@ -43,4 +43,4 @@ const LoginLayout = () => {
   );
 };
 
-export default LoginLayout;
+export default LoginPage;

@@ -6,7 +6,7 @@ import { Form, json } from "react-router-dom";
 import validator from "validator";
 import EmailValidationDialog from "./Components/EmailValidationDialog";
 
-const RegisterLayout = () => {
+const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [useEmail, setUseEmail] = useState(null);
   // const [password, setPassword] = useState("");
@@ -101,9 +101,9 @@ const RegisterLayout = () => {
               value={email}
               required
               onChange={onEmailChange}
-              error={!error.emailHasError}
+              error={error.emailHasError}
               helperText={
-                !error.emailHasError && "Please input valid email address"
+                error.emailHasError && "Please input valid email address"
               }
               sx={{ marginBottom: "1rem" }}
             />
@@ -179,4 +179,4 @@ const RegisterLayout = () => {
   );
 };
 
-export default RegisterLayout;
+export default RegisterPage;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const AboutUsLayout = () => {
+const AboutUsPage = () => {
   return (
     <div>
       for smart eat-out, we provide promotion lists of restaurants. This helps
@@ -11,4 +11,4 @@ const AboutUsLayout = () => {
   );
 };
 
-export default AboutUsLayout;
+export default AboutUsPage;
