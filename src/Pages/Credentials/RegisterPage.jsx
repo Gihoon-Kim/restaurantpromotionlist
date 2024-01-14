@@ -1,7 +1,7 @@
 import { Button, Container, Paper, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
-// import ReactPasswordChecklist from "react-password-checklist";
+import PasswordChecklist from "react-password-checklist";
 import { Form, json } from "react-router-dom";
 import validator from "validator";
 import styles from "./RegisterPage.module.css";
@@ -9,11 +9,11 @@ import { ConfirmDialog } from "./Components/ConfirmDialog";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [passwordChecker, setPasswordChecker] = useState("");
-  // const [isValid, setIsValid] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordChecker, setPasswordChecker] = useState("");
   const [emailUsable, setEmailUsable] = useState(true);
   const [emailValidated, setEmailValidated] = useState(false);
+  const [passwordValidated, setPasswordValidated] = useState(false);
   const [isEmailConfirmDialogOpen, setIsEmailConfirmDialogOpen] =
     useState(false);
 
@@ -23,6 +23,16 @@ const RegisterPage = () => {
       setEmailUsable(true);
     }
     setEmail(event.target.value);
+  };
+
+  const onPasswordChange = (event) => {
+    event.preventDefault();
+    setPassword(event.target.value);
+  };
+
+  const onPasswordCheckerChange = (event) => {
+    event.preventDefault();
+    setPasswordChecker(event.target.value);
   };
 
   const onEmailCheckClickEvent = async (event) => {
@@ -118,55 +128,60 @@ const RegisterPage = () => {
             )}
           </Container>
 
-          {/* <Container
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <TextField
-              id="outlined-basic"
-              fullWidth
-              label="Password"
-              type="password"
-              variant="outlined"
-              value={password}
-              required
-              onChange={onPasswordChange}
-              style={{ marginRight: "50px" }}
-            />
+          {emailValidated && (
+            <div style={{ display: "block" }}>
+              <Container
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  variant="outlined"
+                  value={password}
+                  required
+                  onChange={onPasswordChange}
+                  style={{ marginRight: "50px" }}
+                />
 
-            <TextField
-              id="outlined-basic"
-              fullWidth
-              label="Password Check"
-              type="password"
-              variant="outlined"
-              value={passwordChecker}
-              required
-              onChange={onPasswordCheckerChange}
-            />
-          </Container>
+                <TextField
+                  fullWidth
+                  label="Password Check"
+                  type="password"
+                  variant="outlined"
+                  value={passwordChecker}
+                  required
+                  onChange={onPasswordCheckerChange}
+                />
+              </Container>
 
-          <Container
-            sx={{
-              marginBottom: "30px",
-            }}
-          >
-            <ReactPasswordChecklist
-              rules={["minLength", "specialChar", "number", "capital", "match"]}
-              minLength={5}
-              value={password}
-              valueAgain={passwordChecker}
-              onChange={(isValid) => {
-                setIsValid(isValid);
-              }}
-            />
-          </Container>
+              <PasswordChecklist
+                rules={[
+                  "minLength",
+                  "specialChar",
+                  "number",
+                  "capital",
+                  "match",
+                ]}
+                minLength={8}
+                value={password}
+                valueAgain={passwordChecker}
+                onChange={(isValid) => {
+                  if (isValid) setPasswordValidated(true);
+                  else setPasswordValidated(false);
+                }}
+              />
+            </div>
+          )}
 
-          <div>
-            <button disabled={!isValid}>Register</button>
-          </div> */}
+          {passwordValidated && (
+            <div>
+              <button>Register</button>
+            </div>
+          )}
         </Form>
       </Paper>
     </Container>
