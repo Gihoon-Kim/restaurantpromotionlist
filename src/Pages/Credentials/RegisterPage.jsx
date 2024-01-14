@@ -1,48 +1,31 @@
 import { Button, Container, Paper, TextField } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import ReactPasswordChecklist from "react-password-checklist";
 import { Form, json } from "react-router-dom";
 import validator from "validator";
-import EmailValidationDialog from "./Components/EmailValidationDialog";
+import styles from "./RegisterPage.module.css";
+import { ConfirmDialog } from "./Components/ConfirmDialog";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
-  const [useEmail, setUseEmail] = useState(null);
   // const [password, setPassword] = useState("");
   // const [passwordChecker, setPasswordChecker] = useState("");
   // const [isValid, setIsValid] = useState(false);
-  const [error, setError] = useState({
-    emailHasError: false,
-    passwordCheckError: false,
-  });
-
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-
-  useEffect(() => {
-    if (!useEmail) {
-      setEmail("");
-      setUseEmail(null);
-    }
-    onDialogClose();
-  }, [useEmail]);
-
-  useEffect(() => {
-    onEmailValidate(email);
-  }, [email]);
+  const [emailUsable, setEmailUsable] = useState(true);
+  const [emailValidated, setEmailValidated] = useState(false);
+  const [isEmailConfirmDialogOpen, setIsEmailConfirmDialogOpen] =
+    useState(false);
 
   const onEmailChange = (event) => {
     event.preventDefault();
+    if (event.target.value !== null) {
+      setEmailUsable(true);
+    }
     setEmail(event.target.value);
   };
 
-  const onEmailValidate = (email) => {
-    validator.isEmail(email)
-      ? setError({ emailHasError: true })
-      : setError({ emailHasError: false });
-  };
-
-  const _onEmailCheckClickEvent = async (event) => {
+  const onEmailCheckClickEvent = async (event) => {
     event.preventDefault();
 
     const response = await axios.get(
@@ -61,16 +44,20 @@ const RegisterPage = () => {
       );
     } else {
       if (response.data.length > 0) {
-        setError({ emailCheckError: true });
+        setEmailUsable(false);
+        setIsEmailConfirmDialogOpen(true);
       } else {
-        setError({ emailCheckError: false });
-        setDialogOpen(true);
+        setEmailUsable(true);
+        setIsEmailConfirmDialogOpen(true);
       }
     }
   };
 
-  const onDialogClose = () => {
-    setDialogOpen(false);
+  const handleEmailValidateDialogClose = () => {
+    setIsEmailConfirmDialogOpen(false);
+    if (emailUsable) {
+      setEmailValidated(true);
+    }
   };
 
   // const onPasswordChange = (event) => {
@@ -92,29 +79,43 @@ const RegisterPage = () => {
             }}
           >
             <h1>Enter your email</h1>
-            <TextField
-              id="outlined-basic"
-              fullWidth
-              label="Email"
-              type="email"
-              variant="outlined"
-              value={email}
-              required
-              onChange={onEmailChange}
-              error={error.emailHasError}
-              helperText={
-                error.emailHasError && "Please input valid email address"
-              }
-              sx={{ marginBottom: "1rem" }}
-            />
-            <Button
-              disabled={!error.emailHasError}
-              variant="outlined"
-              onClick={_onEmailCheckClickEvent}
-              sx={{ textTransform: "none" }}
-            >
-              Check Email
-            </Button>
+            <div className={styles.email}>
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                type="email"
+                variant="outlined"
+                fullWidth
+                value={email}
+                required
+                onChange={onEmailChange}
+                disabled={emailValidated}
+              />
+              <Button
+                disabled={
+                  emailValidated ||
+                  email.length === 0 ||
+                  !validator.isEmail(email)
+                }
+                variant="outlined"
+                onClick={onEmailCheckClickEvent}
+                sx={{
+                  marginLeft: "10px",
+                  textTransform: "none",
+                }}
+              >
+                Check Email
+              </Button>
+            </div>
+
+            {isEmailConfirmDialogOpen && (
+              <ConfirmDialog
+                email={email}
+                isOpen={isEmailConfirmDialogOpen}
+                emailUsable={emailUsable}
+                handleClose={handleEmailValidateDialogClose}
+              />
+            )}
           </Container>
 
           {/* <Container
@@ -168,13 +169,6 @@ const RegisterPage = () => {
           </div> */}
         </Form>
       </Paper>
-
-      <EmailValidationDialog
-        open={dialogOpen}
-        close={onDialogClose}
-        email={email}
-        setUseEmail={setUseEmail}
-      />
     </Container>
   );
 };
